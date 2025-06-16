@@ -1,13 +1,32 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import ProjectCard from "./project-card"
 
-export default async function FeaturedProjects() {
-  const response = await fetch("http://localhost:3000/api");
-  const data = await response.json();
-  const projectData = data.projects;
-  const projects = projectData.filter((p)=>p.featured)
+export default function FeaturedProjects() {
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const response = await fetch("/api")
+        const data = await response.json()
+        const projectData = data.projects || []
+        const featuredProjects = projectData.filter((p) => p.featured)
+        setProjects(featuredProjects)
+      } catch (error) {
+        console.error("Failed to fetch projects:", error)
+        // Fallback to empty projects
+        setProjects([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProjects()
+  }, [])
 
   return (
     <section className="container mx-auto px-6 py-16">
@@ -23,9 +42,19 @@ export default async function FeaturedProjects() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} featured={true} />
-          ))}
+          {loading ? (
+            <div className="col-span-2 text-center py-8">
+              <p className="text-gray-600 dark:text-gray-400">Loading projects...</p>
+            </div>
+          ) : projects.length > 0 ? (
+            projects.map((project, index) => (
+              <ProjectCard key={index} project={project} featured={true} />
+            ))
+          ) : (
+            <div className="col-span-2 text-center py-8">
+              <p className="text-gray-600 dark:text-gray-400">No featured projects available yet.</p>
+            </div>
+          )}
         </div>
       </div>
     </section>

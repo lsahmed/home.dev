@@ -1,13 +1,29 @@
 "use client"
+import { useState, useEffect } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import ProjectCard from "@/components/project-card"
 
-export default async function Projects() {
-  const response = await fetch("http://localhost:3000/api");
-  const data = await response.json();
-  const projects = data.projects;
+export default function Projects() {
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
 
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const response = await fetch("/api")
+        const data = await response.json()
+        setProjects(data.projects || [])
+      } catch (error) {
+        console.error("Failed to fetch projects:", error)
+        setProjects([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProjects()
+  }, [])
 
   const featuredProjects = projects.filter((project) => project.featured)
   const otherProjects = projects.filter((project) => !project.featured)
@@ -29,21 +45,33 @@ export default async function Projects() {
           {/* Featured Projects */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Featured Projects</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {featuredProjects.map((project, index) => (
-                <ProjectCard key={index} project={project} featured={true} />
-              ))}
-            </div>
+            {loading ? (
+              <div className="text-center py-8">
+                <p className="text-gray-600 dark:text-gray-400">Loading projects...</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-8">
+                {featuredProjects.map((project, index) => (
+                  <ProjectCard key={index} project={project} featured={true} />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Other Projects */}
           <div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Other Projects</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherProjects.map((project, index) => (
-                <ProjectCard key={index} project={project} featured={false} />
-              ))}
-            </div>
+            {loading ? (
+              <div className="text-center py-8">
+                <p className="text-gray-600 dark:text-gray-400">Loading projects...</p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {otherProjects.map((project, index) => (
+                  <ProjectCard key={index} project={project} featured={false} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </main>
