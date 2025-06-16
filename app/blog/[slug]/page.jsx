@@ -1,17 +1,53 @@
-"use client"
+'use client'
 
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import Link from "next/link"
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react"
+import { useEffect, useState } from "react"
+import { useParams } from "next/navigation"
 
-export default async function Page({ params }) {
-  const { slug } = await params;
+export default function Page() {
+  const [post, setPost] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const params = useParams()
+  const slug = params.slug
 
-  const response = await fetch("http://localhost:3000/api");
-  const data = await response.json();
-  const posts = data.posts || [];
-  const post = posts.filter((p)=>p.slug===slug)[0]
+  useEffect(() => {
+    async function fetchPost() {
+      try {
+        const response = await fetch("/api")
+        const data = await response.json()
+        const posts = data.posts || []
+        const foundPost = posts.find((p) => p.slug === slug)
+        setPost(foundPost || null)
+      } catch (error) {
+        console.log("Failed to fetch post", error)
+        setPost(null)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    if (slug) {
+      fetchPost()
+    }
+  }, [slug])
+  
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <Header />
+        <main className="container mx-auto px-6 pt-32 pb-16">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-gray-600 dark:text-gray-300">Loading post...</p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 
   if (!post) {
     return (
