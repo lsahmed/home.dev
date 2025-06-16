@@ -1,13 +1,32 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import BlogCard from "@/components/blog-card"
 
-export default async function Blog() {
- const response = await fetch("http://localhost:3000/api", {method: "GET"});
- const data = await response.json();
- const posts = data.posts || [];
+export default function Blog() {
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        // Use relative URL instead of localhost
+        const response = await fetch("/api", { method: "GET" })
+        const data = await response.json()
+        setPosts(data.posts || [])
+      } catch (error) {
+        console.error("Failed to fetch posts:", error)
+        // Fallback to empty posts or static content
+        setPosts([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPosts()
+  }, [])
 
 
   return (
@@ -26,9 +45,19 @@ export default async function Blog() {
 
           {/* Blog Posts */}
           <div className="space-y-8">
-            {posts.map((post, index) => (
-              <BlogCard key={index} post={post} />
-            ))}
+            {loading ? (
+              <div className="text-center py-8">
+                <p className="text-gray-600 dark:text-gray-400">Loading posts...</p>
+              </div>
+            ) : posts.length > 0 ? (
+              posts.map((post, index) => (
+                <BlogCard key={index} post={post} />
+              ))
+            ) : (
+              <div className="text-center py-8">
+                <p className="text-gray-600 dark:text-gray-400">No blog posts available yet. Check back soon!</p>
+              </div>
+            )}
           </div>
         </div>
       </main>
