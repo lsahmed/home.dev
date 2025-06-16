@@ -8,29 +8,29 @@ import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 
 export default function Page() {
-  const [post, setPost] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const params = useParams()
-  const slug = params.slug
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const params = useParams();
+  const slug = params.slug;
 
   useEffect(() => {
     async function fetchPost() {
       try {
-        const response = await fetch("/api")
-        const data = await response.json()
+        const response = await fetch("/api");
+        const data = await response.json();
         const posts = data.posts || []
-        const foundPost = posts.find((p) => p.slug === slug)
-        setPost(foundPost || null)
+        const foundPost = posts.find((p) => p.slug === slug);
+        setPost(foundPost || null);
       } catch (error) {
-        console.log("Failed to fetch post", error)
-        setPost(null)
+        console.log("Failed to fetch post", error);
+        setPost(null);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
     
     if (slug) {
-      fetchPost()
+      fetchPost();
     }
   }, [slug])
   
