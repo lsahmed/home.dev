@@ -85,7 +85,7 @@ export default function About() {
                 </div>
                 <div className="flex items-center text-gray-600 dark:text-gray-400">
                   <Mail className="w-5 h-5 mr-3" />
-                  <span><a href="mailto://radnorethan@gmail.com">radnorethan@gmail.com</a></span>
+                  <span><a href="mailto://md.ahmed701153@gmail.com">md.ahmed701153@gmail.com</a></span>
                 </div>
                 <div className="flex items-center text-gray-600 dark:text-gray-400">
                   <Calendar className="w-5 h-5 mr-3" />

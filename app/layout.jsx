@@ -1,25 +1,25 @@
 import "./globals.css"
 
 export const metadata = {
-  title: "Ethan  - Computer Science Student",
+  title: "Ahmed  - Computer Science Student",
   description:
     "Computer Science student passionate about web development, specializing in React, Next.js, and modern web technologies.",
-  keywords: ["Ethan ", "Computer Science Student", "Web Developer", "React", "Next.js", "Web Development"],
-  authors: [{ name: "Ethan " }],
-  creator: "Ethan ",
+  keywords: ["Ahmed ", "Computer Science Student", "Web Developer", "React", "Next.js", "Web Development"],
+  authors: [{ name: "Ahmed " }],
+  creator: "Ahmed ",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://lsahmed.tech",
-    title: "Ethan  - Computer Science Student",
+    title: "Ahmed  - Computer Science Student",
     description: "Computer Science student passionate about web development and building innovative projects",
-    siteName: "Ethan ",
+    siteName: "Ahmed ",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ethan  - Computer Science Student",
+    title: "Ahmed  - Computer Science Student",
     description: "Computer Science student passionate about web development and building innovative projects",
-    creator: "@ethanradnora",
+    creator: "@Ahmedradnora",
   },
 }
 

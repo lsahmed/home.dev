@@ -11,7 +11,7 @@ export default function Footer() {
                 <div className="w-8 h-8 bg-black dark:bg-white rounded-sm flex items-center justify-center mr-3">
                   <span className="text-white dark:text-black font-bold text-sm">ER</span>
                 </div>
-                <span className="text-gray-900 dark:text-white font-semibold">Ethan </span>
+                <span className="text-gray-900 dark:text-white font-semibold">Ahmed </span>
               </div>
               <p className="text-gray-600 dark:text-gray-400 max-w-md">
                 Computer Science student passionate about learning new technologies and building innovative web applications.
@@ -28,7 +28,7 @@ export default function Footer() {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="https://x.com/ethanradnor"
+                href="https://x.com/Ahmedradnor"
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 target="_blank"
                 aria-label="Twitter"
@@ -44,7 +44,7 @@ export default function Footer() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="mailto:radnorethan@gmail.com"
+                href="mailto:md.ahmed701153@gmail.com"
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 target="_blank"
                 aria-label="Email"
@@ -56,7 +56,7 @@ export default function Footer() {
 
           <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center">
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              © {new Date().getFullYear()} Ethan . All rights reserved.
+              © {new Date().getFullYear()} Ahmed . All rights reserved.
             </p>
           </div>
         </div>

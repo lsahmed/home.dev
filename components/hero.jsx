@@ -9,7 +9,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed">
-            I'm Ethan , a Computer Science student passionate about building exceptional digital
+            I'm Ahmed , a Computer Science student passionate about building exceptional digital
             experiences. Currently learning modern web technologies and working on innovative projects.
           </p>
 
