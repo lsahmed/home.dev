@@ -30,7 +30,7 @@ export async function GET() {
       "A Node.js web server with JWT-based authentication, featuring user registration and login routes. User data is securely stored in MongoDB with hashed passwords for enhanced security.",
       image: "https://i.ibb.co/d4k7Tx5Q/webserverjwt.png",
       tags: ["Node.js", "MongoDB", "Express" ,"JWT", "Bcrypt"],
-      github: "https://github.com/lsahmed/passwd",
+      github: "https://github.com/lsahmed/node-jwt-server",
       featured: true,
     },
     {
