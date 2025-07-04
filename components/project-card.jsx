@@ -35,13 +35,13 @@ export default function ProjectCard({ project, featured = false }) {
         <div className="flex items-center gap-4">
           <a
             href={project.github}
-            className="flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+            className="flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors" target="_blank">
             <Github className="w-4 h-4 mr-2" />
             Code
           </a>
           {project.demo ?  <a
             href={project.demo}
-            className="flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+            className="flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors" target="_blank">
             <ExternalLink className="w-4 h-4 mr-2" />
             Demo
           </a> : ""}
